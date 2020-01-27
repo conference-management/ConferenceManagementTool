@@ -1,0 +1,20 @@
+# This is a sample config file
+# Config files are evaluated line-wise.
+# A line that starts with a '#' symbol is a comment
+# All (valid) non-comment lines obey the grammar: <key> : '<value>' [# <comment>]
+# Whitespaces are ignored outside of the quoted value (the part between the two ' symbols)
+# Capitalization of keys is irrelevant
+# The tool only accepts well-formatted config files
+
+name : 'SE Presentation\#3' # mandatory field. Presents a possible escape sequence
+organizer : 'Group 17' # mandatory field
+startTime : '1579081095' # A unix timestamp. If not it is omitted, it wil default to the time at which this file is read
+endTime : '1579996799' # A unix timestamp. This field is mandatory
+databasePath : './db/conference.db' # Optional field. Defaults to  './testdb/testdb.db'
+documentsPath : './docs' # Optional field. Defaults to './docs'
+url : 'http://localhost' # the url at which the conference is hosted 'https://example.eu/conference/home.html'
+admin : 'name:email@email.com:group:residence:function' # A generic admin. This is the only key that can be duplicated
+admin : 'georg best:best@best.best:the best:the best house:being the best' # An other generic admin
+admin : 'escape:es\:cape@em.em:es\'cape:es\\\\\#cape:esc\#ape'
+
+

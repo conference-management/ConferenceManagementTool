@@ -1,0 +1,151 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CMT</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="main-header layer" style="background-color: #212529">
+        <div id="sticky-header" class="main-class">
+            <div class="container-fluid p-0">
+                <div class="row align-items-center no-gutters">
+                    <div class="col-xl-1 col-lg-1">
+                        <div class="image-logo">
+                            <a href="index.html">
+                                <img src="img/vote-logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="header-timer" id="hdtimer"></div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="menu-class  d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="home.html">Agenda</a></li>
+                                    <li><a href="documents.html">Documents</a></li>
+                                    <li><a href="vote.html">Voting</a></li>
+                                    <li><a  href="#">Requests <i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="change_request.html">Request of Change</a></li>
+                                            <li><a href="speech_request.html">Request of Speech</a></li>
+                                            <li class="adminField"><a href="request_management.html">Manage Requests</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="active" href="profile.html">Profile</a></li>
+                                    <li class="adminField"><a href="user_management.html">User Management</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="d-flex align-items-center">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="main-text">
+    <div class="container" style="margin-top: 26px;">
+        <div class="d-none d-sm-block mb-5 pb-4"></div>
+        <div id="personalDataID"></div>
+        <div class="row">
+            <div class="col-lg-2">
+                <p class="text-title-class">Username:</p>
+            </div>
+            <div class="col-lg-10" style="float:left;">
+                    <div id="profileUsername"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="profileName"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                    <p class="text-title-class">Email:</p>
+            </div>
+            <div class="col-lg-10" style="float:left;">
+                    <div id="profileEmail"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <!-- <div class="media-body"> -->
+                    <p class="text-title-class">Group:</p>
+                <!-- </div> -->
+            </div>
+            <div class="col-lg-10" style="float:left;">
+                <!-- <div class="media-body"> -->
+                    <div id="profileGroup"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <!-- <div class="media-body"> -->
+                    <p class="text-title-class">Residence:</p>
+                <!-- </div> -->
+            </div>
+            <div class="col-lg-10" style="float:left;">
+                <!-- <div class="media-body"> -->
+                    <div id="profileResidence"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <!-- <div class="media-body"> -->
+                    <p class="text-title-class">Function:</p>
+                <!-- </div> -->
+            </div>
+            <div class="col-lg-10" style="float:left;">
+                <!-- <div class="media-body"> -->
+                    <div id="profileFunction"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.slicknav.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<script type="module" src="js/not_libs/personaldata.js"></script>
+<script type="module" src="js/not_libs/general.js"></script>
+<script type="module" src="js/not_libs/displayActiveVote.js"></script>
+
+</body>
+</html>

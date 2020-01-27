@@ -1,0 +1,155 @@
+plugins {
+    id "java"
+    id "pmd"
+    id "jacoco"
+    id "checkstyle"
+    id "de.jansauer.printcoverage" version "2.0.0"
+
+}
+
+group 'se19.project23'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+if (!JavaVersion.current().isJava11Compatible())
+    throw new GradleException("REQUIRES AT LEAST JAVA 11")
+
+wrapper {
+    gradleVersion = "6.0.1"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDir "src/main/resources"
+            srcDir "config/"
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDir "src/test/resources"
+        }
+        compileClasspath += sourceSets.main.output
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.9'
+
+    /**
+     * Library used for converting objects to JSON and viceversa
+     */
+    compile("com.google.code.gson:gson:2.8.6")
+
+
+    /**
+     * Library used for managing .db files
+     */
+    compile("org.xerial:sqlite-jdbc:3.27.2.1")
+
+    /**
+     * Library used for generating QR-Codes
+     */
+    compile 'io.nayuki:qrcodegen:1.5.0'
+
+    /**
+     * Library used for communication
+     */
+    compile group: 'io.netty', name: 'netty-all', version: '4.1.43.Final'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.compilerArgs.add("-Xlint:all")
+    options.compilerArgs.add("-Werror")
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+build {
+    dependsOn(check)
+    dependsOn(javadoc)
+}
+
+pmd {
+    toolVersion = "6.17.0"
+    ignoreFailures = true
+}
+tasks.withType(Pmd) {
+    reports {
+        html.enabled = true
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+tasks.withType(JacocoReport) {
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+        html.destination = file("${buildDir}/reports/jacoco")
+    }
+    finalizedBy("printCoverage")
+}
+
+tasks.withType(Test) {
+    testClassesDirs = sourceSets.main.output.classesDirs + sourceSets.test.output.classesDirs
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams false
+    }
+    ignoreFailures = false
+    finalizedBy("jacocoTestReport")
+}
+
+checkstyle {
+    toolVersion = "8.26"
+    ignoreFailures = true
+}
+checkstyleMain {
+    showViolations = false
+}
+checkstyleTest {
+    showViolations = false
+}
+tasks.withType(Checkstyle) {
+    reports {
+        html.enabled = true
+        xml.enabled = false
+    }
+    configFile file("${projectDir}/config/checkstyle/configuration.xml")
+    configProperties = ["suppressionFile": file("${projectDir}/config/checkstyle/suppression.xml")]
+}
+
+javadoc {
+    options.encoding = "UTF-8"
+    options.addBooleanOption("html5", true)
+    options.destinationDirectory = file("${buildDir}/reports/javadoc")
+    source = sourceSets.main.allJava
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    archiveName = "fullCMS-${version}.jar"
+    manifest {
+        attributes 'Implementation-Title': 'Conference Management Tool',
+                'Implementation-Version': version,
+                'Main-Class': 'main.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

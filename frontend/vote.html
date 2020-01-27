@@ -1,0 +1,231 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CMT</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="main-header layer" style="background-color: #212529">
+        <div id="sticky-header" class="main-class">
+            <div class="container-fluid p-0">
+                <div class="row align-items-center no-gutters">
+                    <div class="col-xl-1 col-lg-1">
+                        <div class="image-logo">
+                            <a href="index.html">
+                                <img src="img/vote-logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="header-timer" id="hdtimer"></div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="menu-class  d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="home.html">Agenda</a></li>
+                                    <li><a href="documents.html">Documents</a></li>
+                                    <li><a class="active" href="vote.html">Voting</a></li>
+                                    <li><a href="#">Requests <i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="change_request.html">Request of Change</a></li>
+                                            <li><a href="speech_request.html">Request of Speech</a></li>
+                                            <li class="adminField"><a href="request_management.html">Manage Requests</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="profile.html">Profile</a></li>
+                                    <li class="adminField"><a href="user_management.html">User Management</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="d-flex align-items-center">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="main-section" style="padding-bottom: 16px; padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12">
+                <div class="small-section" id="submit-message2">
+                    <div class="small-header">
+                        <h2 style="color:white;">Active Voting</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-11"
+                             style="padding-top:40px; float:right; font-size: 22px; margin-right:30px; text-align: right;"
+                             id="timer"></div>
+                    </div>
+                    <div id="voteQuestion"></div>
+                    <div class="row">
+                        <div class="custom-control col-lg-7" style="margin-left: 30px;" id="failure"></div>
+                        <div class="form-group mt-3 col-lg-4" style="float: right; padding-bottom: 25px;"
+                             id="voteSubmission">
+                            <!--<button type="submit" class="button button-contactForm btn-class-box pull-right"
+                                    style="border: 1px solid #00D363; color:#00D363!important; margin-right: 20px; margin-left: 50px;"
+                                    id="submitButton">Submit Vote
+                            </button>-->
+                            <button type="submit" class="button btn-class-box" id="submitButton" style="margin-right: 20px; margin-left: 50px;">
+                                Submit Vote
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-section sub-section-class" style="padding-bottom: 60px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12">
+                <div class="small-section">
+                    <div class="small-header">
+                        <h2 style="color:white;">Previous Votings</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-11"
+                             style="padding-top:40px; float:right; font-size: 22px; margin-right:30px; text-align: right;"></div>
+                    </div>
+                    <div id="accordion"></div>
+                    <div class="row">
+                        <div class="custom-control col-lg-8" style="margin-left: 30px;"></div>
+                        <div class="form-group mt-3 col-lg-3" style="float: right; padding-bottom: 25px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main-section" style="padding-bottom: 60px;" id="create-edit-vote">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12 adminField">
+                <div class="small-section" id="submit-message1" style="padding-bottom: 110px;">
+                    <div class="small-header">
+                        <h2 style="color:white;">Create/Edit Votings</h2>
+                    </div>
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table table-hover" style="font-size:20px; text-align:center;">
+                            <thead>
+                            <th>Question</th>
+                            <th>Type</th>
+                            <th>Duration</th>
+                            </thead>
+                            <tbody id="createdVotesList"></tbody>
+                        </table>
+                    </div>
+                    <!--<button style="margin-right: 20px; margin-left: 26px; margin-top: 20px;border: 1px solid #00D363; color:#00D363!important; float: right;"
+                            class="button btn-class-box" id="createVote">New Voting
+                    </button>-->
+                    <button type="button" class="button btn-class-box" id="createVote" style="float: right; margin-right: 20px;">
+                        New Voting
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id='dialog' style='display: none;'>
+    <div class="form-group">
+        <span for="name12" style="font-weight: bold;font-size: 16px;">Vote Question</span>
+
+        <input class="form-control valid" name="name" id="VoteText" type="text" onfocus="this.placeholder = ''"
+               onblur="this.placeholder = 'please enter here'" placeholder="please enter here" required>
+
+    </div>
+    <div class="form-group">
+        <span for="name12" style="font-weight: bold;font-size: 16px;">Duration in minutes:</span>
+
+        <input class="form-control valid" name="duration" id="duration" type="number" onfocus="this.placeholder = ''"
+               onblur="this.placeholder = 'please enter here'" placeholder="please enter here" required>
+
+    </div>
+    <div class="form-group">
+        <span style="font-weight: bold;font-size: 18px; margin-right: 10px; ">Named Vote:</span>
+        <div class="btn-group" id="status" data-toggle="buttons">
+            <label class="btn btn-default btn-on btn-xs active">
+                <input type="radio" value="1" name="yes-no" checked="checked" style="opacity: 0; width: 0">Yes</label>
+            <label class="btn btn-default btn-off btn-xs ">
+                <input type="radio" value="0" name="yes-no" style="opacity: 0; width: 0">No</label>
+        </div>
+    </div>
+    <hr style="padding-bottom: 20px;" ;>
+    <div>
+        <button type="button" class="btn btn-outline-info " style="width: 100px;" data-role="close" title="Close"
+                class="gj-dialog-md-close">Cancel
+        </button>
+
+        <button type="button" class="btn btn-outline-primary" style="width: 100px;" data-role="close" title="Close"
+                class="gj-dialog-md-close" onclick="createNewVoting();" id="confirm">Confirm
+        </button>
+    </div>
+</div>
+
+<div id="dialogMessage" style="display: none;">
+    <h4 style="text-align: center; margin-top: 10px; color: black;">Option(s) has been saved successfully!</h4>
+    <hr style="padding-bottom: 10px;" ;>
+    <button type="button" class="btn btn-outline-primary" style="width: 100px; float:right;" data-role="close"
+            title="Close" class="gj-dialog-md-close">OK
+    </button>
+</div>
+
+<div id="dialogMessageForOption" style="display: none;">
+    <h4 style="text-align: center; margin-top: 10px; color: black;"><span id="failureMessage"></span></h4>
+    <hr style="padding-bottom: 10px;" ;>
+    <button type="button" class="btn btn-outline-primary" style="width: 100px; float:right;" data-role="close"
+            title="Close" class="gj-dialog-md-close">OK
+    </button>
+
+</div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.slicknav.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/gijgo.min.js"></script>
+<script src="js/main.js"></script>
+
+<script type="module" defer src="js/not_libs/voting.js"></script>
+<script type="module" src="js/not_libs/displayActiveVote.js"></script>
+<script type="module" src="js/not_libs/displayPreviousVote.js"></script>
+<script type="module" src="js/not_libs/general.js"></script>
+
+</body>
+</html>

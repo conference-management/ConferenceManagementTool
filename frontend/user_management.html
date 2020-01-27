@@ -1,0 +1,292 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CMT</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Additional style choices for popup window when creating/editing users-->
+    <style>
+        label, input {
+            display: block;
+        }
+
+        input.text {
+            margin-bottom: 12px;
+            width: 95%;
+            padding: .4em;
+        }
+
+        fieldset {
+            padding: 0;
+            border: 0;
+            margin-top: 25px;
+        }
+
+        h1 {
+            font-size: 1.2em;
+            margin: .6em 0;
+        }
+
+        .ui-dialog .ui-state-error {
+            padding: .3em;
+        }
+
+        .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="main-header layer" style="background-color: #212529">
+        <div id="sticky-header" class="main-class">
+            <div class="container-fluid p-0">
+                <div class="row align-items-center no-gutters">
+                    <div class="col-xl-1 col-lg-1">
+                        <div class="image-logo">
+                            <a href="index.html">
+                                <img src="img/vote-logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="header-timer" id="hdtimer"></div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="menu-class  d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="home.html">Agenda</a></li>
+                                    <li><a href="documents.html">Documents</a></li>
+                                    <li><a href="vote.html">Voting</a></li>
+                                    <li><a href="#">Requests <i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="change_request.html">Request of Change</a></li>
+                                            <li><a href="speech_request.html">Request of Speech</a></li>
+                                            <li><a href="request_management.html">Manage Requests</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="profile.html">Profile</a></li>
+                                    <li><a class="active" href="user_management.html">User Management</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="d-flex align-items-center">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="main-section" style="padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12">
+                <div class="small-section" id="submit-message">
+                    <div class="small-header">
+                        <h3>User Management Panel (
+                            <span class="glyphicon glyphicon-file" onclick="uploadUserList()"></span>/
+                            <span class="glyphicon glyphicon-save" onclick="downloadAllQrCodes()"></span>
+                            <input type="file" class="form-control-file" id="upUserList" style="display:none"/>
+                            )</h3>
+                    </div>
+                    <form class="" action="user_management.html" method="POST" id="form-submit">
+                        <div class="row" style="padding-top: 36px;">
+                            <div class="col-lg-2" style="float:left;"></div>
+                            <div class="col-lg-2" style="float:left;">
+                                Sort by
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group controls">
+                                    <select id="sortingOptions" class="form-control" style="height:100%" required>
+                                        <option selected value="attendeeName">Name</option>
+                                        <option value="attendeeGroup">Group</option>
+                                        <option value="attendeeFunction">Function</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="float:left;"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10" style="padding-bottom: 20px;">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <th>Name</th>
+                                    <th>Group</th>
+                                    <th>Function</th>
+                                    <th>Present</th>
+                                    </thead>
+                                    <tbody id="attendeeList"></tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="form-group mt-3 col-lg-10" style="float: left;">
+                                    <button class="button button-contactForm btn-class-box" id="create-attendee">Add
+                                        Attendee
+                                    </button>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Dialog that will be shown when trying to create a user -->
+
+<div id="creationDialog" title="Create new user" class="ui-dialog">
+    <div id="creationTips">All form fields are required.</div>
+
+    <form>
+        <fieldset>
+
+            <label for="createName">Name</label>
+            <input type="text" name="name" id="createName" placeholder="Enter full Name"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="createEmail">Email</label>
+            <input type="text" name="email" id="createEmail" placeholder="Enter Email Address"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="createGroup">Group</label>
+            <input type="text" name="group" id="createGroup" list="existingCreateGroups" placeholder="Enter Group"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+            <datalist id="existingCreateGroups">
+
+            </datalist>
+
+            <label for="createResidence">Residence</label>
+            <input type="text" name="residence" id="createResidence" placeholder="Enter Residence"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="createFnctn">Function</label>
+            <input type="text" name="fnctn" id="createFnctn" placeholder="Enter Function"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <!-- Submit buttons of dialog fields -->
+            <div class="ui-dialog-content">
+                <button type="button" class="btn btn-outline-info" title="Close" style="width: 100px;"
+                        onclick="closeCreateAttendee()">Cancel
+                </button>
+
+                <!-- Gets its functionality in attendees.js -->
+                <button type="submit" class="btn btn-outline-primary" title="Submit" style="width: 100px;">Confirm
+                </button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div id="fileErrorDialog" title="Error in Attendee File" class="ui-dialog" style="text-align: center;">
+
+    <div id = "fileErrorDialogContent">
+
+    </div>
+    <button type="button" class="btn btn-outline-info" title="Close" style="width: 50px; margin-top: 10px;"
+            onclick="closeErrorDialog()">OK
+    </button>
+</div>
+
+<div id="editDialog" title="Edit user" class="ui-dialog">
+    <div id="editingTips">All form fields are required.</div>
+
+    <form>
+        <fieldset>
+            <label for="editName">Name</label>
+            <input type="text" name="name" id="editName" placeholder="Enter full Name"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="editEmail">Email</label>
+            <input type="text" name="email" id="editEmail" placeholder="Enter Email Address"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="editGroup">Group</label>
+            <datalist id="existingEditGroups">
+
+            </datalist>
+            <input type="text" name="group" id="editGroup" list="existingEditGroups" placeholder="Enter Group"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="editResidence">Residence</label>
+            <input type="text" name="residence" id="editResidence" placeholder="Enter Residence"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="editFnctn">Function</label>
+            <input type="text" name="fnctn" id="editFnctn" placeholder="Enter Function"
+                   class="text ui-widget-content ui-corner-all" autocomplete="new-password">
+
+            <label for="presentStatus">Present</label>
+            <div class="btn-group" id="presentStatus" data-toggle="buttons">
+                <label class="btn btn-default btn-on btn-xs active">
+                    <input type="radio" value="1" name="edit-yes-no" checked="checked" style="opacity: 0; width: 0">Yes</label>
+                <label class="btn btn-default btn-off btn-xs ">
+                    <input type="radio" value="0" name="edit-yes-no" style="opacity: 0; width: 0">No</label>
+            </div>
+
+            <!-- Submit buttons of dialog fields -->
+            <div>
+                <button type="button" class="btn btn-outline-info" title="Close" style="width: 100px;"
+                        onclick="closeEditAttendee()">Cancel
+                </button>
+
+                <!-- Gets its functionality in attendees.js -->
+                <button type="submit" class="btn btn-outline-primary" title="Submit" style="width: 100px;">Confirm
+                </button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.slicknav.min.js"></script>
+<script src="js/plugins.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/gijgo.min.js"></script>
+
+<script type="module" src="js/not_libs/attendees.js"></script>
+<script type="module" src="js/not_libs/general.js"></script>
+<script type="module" src="js/not_libs/displayActiveVote.js"></script>
+
+</body>
+</html>
